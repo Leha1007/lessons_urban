@@ -2,10 +2,7 @@ class Figure:
     sides_count = 0
 
     def __init__(self, color, sides, filled=False):
-        if self.sides_count == 12:
-            self.__sides = [sides] * 12
-        else:
-            self.__sides = sides
+        self.__sides = sides
         self.__color = color
         self.filled = filled
 
@@ -55,6 +52,9 @@ class Triangle(Figure):
 
 class Cube(Figure):
     sides_count = 12
+
+    def __init__(self, color, sides):
+        super().__init__(color, [sides] * 12)
 
     def get_volume(self):
         return self.get_sides()[0] ** 3
