@@ -25,8 +25,10 @@ class Bank:
             if rand_count <= self.balance:
                 self.balance = self.balance - rand_count
                 print(f'Снятие: {rand_count}. Баланс: {self.balance}.', end='\n')
+                time.sleep(0.001)
             else:
                 print('Запрос отклонён, недостаточно средств', end='\n')
+                time.sleep(0.001)
                 self.lock.acquire()
             time.sleep(0.001)
 
