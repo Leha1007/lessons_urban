@@ -22,7 +22,6 @@ class Bank:
         for _ in range(100):
             rand_count = random.randint(50, 501)
             print(f'Запрос на: {rand_count}.')
-            self.lock.acquire()
             if rand_count <= self.balance:
                 self.balance = self.balance - rand_count
                 print(f'Снятие: {rand_count}. Баланс: {self.balance}.', end='\n')
