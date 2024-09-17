@@ -30,9 +30,8 @@ class Cafe:
     def guest_arrival(self, *guests: Guest):
         for guest in guests:
             self.guests_list.append(guest)
-            if len([t.number for t in self.tables if None == t.guest]) > 0:
-                table_num = random.choice([t.number for t in self.tables if None == t.guest])
-                print([t.number for t in self.tables if None == t.guest])
+            if len([t.number for t in self.tables if None is t.guest]) > 0:
+                table_num = random.choice([t.number for t in self.tables if None is t.guest])
                 for t in self.tables:
                     if t.number == table_num:
                         t.guest = guest.name
@@ -44,7 +43,7 @@ class Cafe:
                 print(f'{guest.name} в очереди')
 
     def discuss_guests(self):
-        while self.queue.empty() or len({t.guest for t in self.tables}) > 1:
+        while not self.queue.empty() or len({t.guest for t in self.tables}) > 1:
             for guest in self.guests_list:
                 for t in self.tables:
                     if guest.name == t.guest and guest.is_alive():
@@ -68,6 +67,11 @@ guests_names = [
 guests = [Guest(name) for name in guests_names]
 # Заполнение кафе столами
 cafe = Cafe(*tables)
+# Приём гостей
+cafe.guest_arrival(*guests)
+# Обслуживание гостей
+cafe.discuss_guests()
+
 # Приём гостей
 cafe.guest_arrival(*guests)
 # Обслуживание гостей
